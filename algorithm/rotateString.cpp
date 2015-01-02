@@ -43,7 +43,7 @@ void rotate_string(string &s,  int offset)
     for(int i = offset; i < (N+offset)/2; ++i){
         tmp = s[i];
         s[i] = s[N-i-1+offset];
-        s[N-i-1-offset] = tmp;
+        s[N-i-1+offset] = tmp;
     }
 
 }
