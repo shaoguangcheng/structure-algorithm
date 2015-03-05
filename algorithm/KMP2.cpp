@@ -43,10 +43,10 @@ void getNext(const string& p,  int *next)
     int np = p.size();
 
     next[0] = -1;
-    int  k = 0, j = 1;
+    int  k = -1, j = 0;
     while(j < np){
         if(k == -1 || p[k] == p[j]){
-            next[j] = next[j-1]+1;
+            next[j] = k;
             ++k;
             ++j;
         }
@@ -69,7 +69,6 @@ void getNext2(const string& p, int * next)
     int np = p.size();
 
     next[0] = -1;
-   next[1] = 0;
 
     int i = 1, j = 0;
     while(i < np){
@@ -89,7 +88,10 @@ int KMP(const string& p, const string& t)
     int np = p.size(), nt = t.size();
     int * next = new int [np];
 
-    getNext2(p, next);
+    getNext(p, next);
+
+    for(int i = 0; i < np; ++i)
+	cout << next[i] << endl;
 
     int i = 0, j = 0 ;
     while(i < nt){
@@ -112,8 +114,8 @@ int KMP(const string& p, const string& t)
 
 int main(int argc, char* argv[])
 {
-    string t("my name is cheng");
-    string p("name");
+    string t("abcabcabcdabcabd");
+    string p("abcabd");
 
     cout << KMP(p, t) << endl;
 
