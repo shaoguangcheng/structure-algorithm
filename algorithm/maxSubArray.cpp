@@ -19,6 +19,13 @@ int findMaxSubArray(int* array, int size)
       result = sum;
   }
 
+  if(result == 0){
+	result = INT_MIN;
+	for(i = 0; i < size; ++i)
+		if(result < array[i])
+			result = array[i]
+  }
+
   return result;
 }
 
