@@ -22,11 +22,25 @@ int findMaxSubArray(int* array, int size)
   return result;
 }
 
+int findMaxSubArray_1(int* array, int size)
+{
+	int result = INT_MIN;
+	int sum = 0;
+
+	for(int i = 0; i < size; ++i){
+		sum = max(sum+array[i], array[i]);
+		if(sum > result)
+			result = sum;
+	}
+
+	return result;
+}
+
 int main()
 {
-  int array[8] = {1,-2,3,10,-4,7,2,-5};
+  int array[8] = {-1,-2,-3,-10,-4,-7,-2,-5};
 
-  cout << findMaxSubArray(array, 8) << endl;
+  cout << findMaxSubArray_1(array, 8) << endl;
 
   return 0;
 }
