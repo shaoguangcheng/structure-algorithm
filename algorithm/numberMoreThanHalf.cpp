@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+///////////////method 1/////////////////////////////
 int numberMoreThanHalf(const int* num, int N)
 {
   if(num == NULL || N <=0){
@@ -36,11 +38,43 @@ int numberMoreThanHalf(const int* num, int N)
   }
 }
 
+/////////////////method 2/////////////////////////
+// using hashtable (maybe map better)
+
+int numberMoreThanHalf_2(const int* array, int N)
+{
+  if(array == NULL || N <=0){
+	printf("error input\n");
+	exit(-1);
+  }
+  
+  int* hashTable = new int [N];
+  
+  memset(hashTable, 0, sizeof(int)*N);
+
+  int key;
+  for(int i = 0;i < N; ++i){
+	key = array[i]%N;
+	++hashTable[key];
+  }
+  
+  for(int i = 0; i < N; ++i){
+	key = array[i]%N;
+	if(hashTable[key] >= N/2)
+	  return array[i];
+  }
+
+  delete [] hashTable;
+
+  printf("no integer's number is more than half\n");
+  exit(-1);
+}
+
 int main()
 {
-  int data[] = {1,2,9,4,5,3,3,4,3,4};
+  int data[] = {1,2,9,3,5,3,3,3,3,4};
 
-  printf("%d\n", numberMoreThanHalf(data, 10));
+  printf("%d\n", numberMoreThanHalf_2(data, 10));
 
   return 0;
 }
