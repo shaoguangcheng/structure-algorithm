@@ -37,7 +37,7 @@ void integerFromString(const char* s, std::vector<int>& ret)
 
 int main()
 {
-	const char* s = "123tft7";
+	const char* s = "123tfe3423 t7";
 
 	std::vector<int> v;
 
